@@ -65,3 +65,22 @@ it(`Displays the appropriate error message when input length is less than 17`, (
     ).toBeInTheDocument();
 
 });
+
+it(`Displays the appropriate error message when input length is greater than 153`, () => {
+    const requiredProps : ReasonForSparingProps =  {
+        reasonForSparing: 'Here is a valid reason.',
+        onChangeReasonForSparing: jest.fn(),
+        validate: validateReasonForSparing
+    };
+
+    render(<ReasonForSparing {...requiredProps} />);
+
+    //fire event so validation is triggered and error message is shown
+    const reasonForSparingElement = screen.getByLabelText(/Reason For Sparing:/i,{selector: 'textarea'});
+    fireEvent.change(reasonForSparingElement, {target: {value: 'A reason. A reason. A reason. A reason. A reason. A reason. A reason. A reason. A reason. A reason. A reason. A reason. A reason. A reason. A reason. ABCD'}});
+    
+    expect(
+        screen.getByText("ERROR: Input must be between 17 and 153 characters.")
+    ).toBeInTheDocument();
+
+});
