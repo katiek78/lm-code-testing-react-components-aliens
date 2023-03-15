@@ -61,7 +61,7 @@ const planetNameElement = screen.getByLabelText(/Planet Name:/i,{selector: 'inpu
 fireEvent.change(planetNameElement, {target: {value: 'E'}});
 
 expect(
-    screen.getByText("Input must be between 2 and 49 characters.")
+    screen.getByText("ERROR: Input must be between 2 and 49 characters.")
 ).toBeInTheDocument();
 
 });

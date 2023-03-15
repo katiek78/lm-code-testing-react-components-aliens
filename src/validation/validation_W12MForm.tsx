@@ -41,6 +41,7 @@ export const validateReasonForSparing: (userInput: string) => string | undefined
 };
 
 export const validateWhatIs2And2: (userInput: string) => string | undefined = (userInput) => {    
-    if (userInput !== '4') return "Input must be '4'."    
+    if (userInput !== '4') return "Input must be '4'."
+    
     return undefined;
 };

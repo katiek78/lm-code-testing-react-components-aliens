@@ -61,7 +61,7 @@ it(`Displays the appropriate error message when 'Not 4' is chosen`, () => {
     fireEvent.change(whatIs2And2Element, {target: {value: 'Not 4'}});
     
     expect(
-        screen.getByText("Input must be '4'.")
+        screen.getByText("ERROR: Input must be '4'.")
     ).toBeInTheDocument();
 
 });

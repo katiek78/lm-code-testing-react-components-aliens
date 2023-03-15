@@ -63,7 +63,7 @@ it(`Displays the appropriate error message when input length is less than 3`, ()
     fireEvent.change(speciesNameElement, {target: {value: 'XY'}});
     
     expect(
-        screen.getByText("Input must be between 3 and 23 characters.")
+        screen.getByText("ERROR: Input must be between 3 and 23 characters.")
     ).toBeInTheDocument();
 
 });

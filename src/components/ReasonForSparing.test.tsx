@@ -61,7 +61,7 @@ it(`Displays the appropriate error message when input length is less than 17`, (
     fireEvent.change(reasonForSparingElement, {target: {value: 'A reason.'}});
     
     expect(
-        screen.getByText("Input must be between 17 and 153 characters.")
+        screen.getByText("ERROR: Input must be between 17 and 153 characters.")
     ).toBeInTheDocument();
 
 });

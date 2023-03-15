@@ -62,7 +62,7 @@ it(`Displays no error message when valid data is entered`, () => {
     fireEvent.change(numberOfBeingsElement, {target: {value: '100000000'}});
 
     expect(
-        screen.getByText("Number must be at least 1,000,000,000.")
+        screen.getByText("ERROR: Number must be at least 1,000,000,000.")
     ).toBeInTheDocument();
     
     });

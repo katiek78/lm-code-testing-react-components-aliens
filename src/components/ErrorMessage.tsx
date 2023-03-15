@@ -4,7 +4,7 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => {
    
     return (
         <>
-            <p style={{color:'#FF0000'}}>{message}</p>
+            {message && <p style={{color:'#FF0000'}}>ERROR: {message}</p>} 
         </>
 	);
 };
