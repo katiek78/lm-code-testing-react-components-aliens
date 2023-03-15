@@ -6,6 +6,7 @@ import WhatIs2And2 from './WhatIs2And2';
 import ReasonForSparing from './ReasonForSparing';
 
 import W12MHeader from './W12MHeader';
+import SubmitButton from './SubmitButton';
 
 const W12MForm = () => {
 	const [speciesName, setSpeciesName] = useState<string>('');	   
@@ -13,6 +14,10 @@ const W12MForm = () => {
 	const [numberOfBeings, setNumberOfBeings] = useState<number>(0);
 	const [whatIs2And2, setWhatIs2And2] = useState<string>('');	    
 	const [reasonForSparing, setReasonForSparing] = useState<string>('');	
+
+	const displayFormData = () => {
+		console.log(speciesName, planetName, numberOfBeings, whatIs2And2, reasonForSparing);
+	}
 
 	return (
 		<section className='w12MForm'>
@@ -26,6 +31,8 @@ const W12MForm = () => {
 			<WhatIs2And2 whatIs2And2={whatIs2And2} onChangeWhatIs2And2={(e: any) => setWhatIs2And2(e.target.value)} />
 			<br />
 			<ReasonForSparing reasonForSparing={reasonForSparing} onChangeReasonForSparing={(e: any) => setReasonForSparing(e.target.value)} />									
+			<br />
+			<SubmitButton onClickSubmitButton={displayFormData} />
 		</section>
 	);
 };
