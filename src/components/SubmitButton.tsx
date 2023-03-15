@@ -3,7 +3,7 @@ import { useState } from 'react';
 const SubmitButton: React.FC<SubmitButtonProps> = ({ onClickSubmitButton }) => {       
 
     return (
-        <button onClick={onClickSubmitButton}>Submit</button>
+        <button id='submitButton' onClick={onClickSubmitButton}>Submit</button>
 	);
 };
 
