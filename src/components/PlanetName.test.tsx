@@ -1,22 +1,23 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import { validatePlanetName } from '../validation/validation_W12MForm';
 import PlanetName, { PlanetNameProps } from './PlanetName';
 
 test('renders input element', () => {
-	render(<PlanetName planetName={''} onChangePlanetName={() => {return;}}/>);
+	render(<PlanetName planetName={''} onChangePlanetName={jest.fn()} validate={jest.fn()} />);
 
     const planetNameLabel = screen.getByLabelText(/Planet Name:/i,{selector: 'input'});
     expect(planetNameLabel).toBeInTheDocument();   
 });
 
 test('input element has value from props', () => {
-	render(<PlanetName planetName={'Earth'} onChangePlanetName={() => {return;}}/>);
+	render(<PlanetName planetName={'Earth'} onChangePlanetName={jest.fn()} validate={jest.fn()} />);
 
     const planetNameElement = screen.getByLabelText(/Planet Name:/i,{selector: 'input'});
     expect(planetNameElement).toHaveValue('Earth');
 });
 test('onChange function is called with correct parameters if value changes', () => {
 	const mockChange = jest.fn();    
-    render(<PlanetName planetName={'Earth'} onChangePlanetName={mockChange}/>);
+    render(<PlanetName planetName={'Earth'} onChangePlanetName={mockChange} validate={jest.fn()} />);
 
     const planetNameElement = screen.getByLabelText(/Planet Name:/i,{selector: 'input'});
     fireEvent.change(planetNameElement, {target: {value: 'Jupiter'}});
@@ -28,17 +29,39 @@ test('onChange function is called with correct parameters if value changes', () 
     }));    
 });
 
-it(`Given valid input,
-		When the component is rendered,
-		no error message is shown`, () => {
-		const requiredProps : PlanetNameProps =  {
-            planetName: 'Earth',
-		    onChangePlanetName: () => {}
-		};
+it(`Displays no error message when valid data is entered`, () => {
+    const requiredProps : PlanetNameProps =  {
+        planetName: 'E',
+        onChangePlanetName: jest.fn(),
+        validate: validatePlanetName
+    };
 
-    	render(<PlanetName {...requiredProps} />);
+    render(<PlanetName {...requiredProps} />);
 
-    	expect(
-    		screen.queryByRole("ErrorMessage")
-    	).not.toBeInTheDocument();
-    });
+    //fire event so validation is triggered and we can verify that error message is not shown
+    const planetNameElement = screen.getByLabelText(/Planet Name:/i,{selector: 'input'});
+    fireEvent.change(planetNameElement, {target: {value: 'Earth'}});
+
+    expect(
+        screen.queryByRole("ErrorMessage")
+    ).not.toBeInTheDocument();
+});
+
+it(`Displays the appropriate error message when input length is less than 2`, () => {
+const requiredProps : PlanetNameProps =  {
+    planetName: 'Ea',
+    onChangePlanetName: jest.fn(),
+    validate: validatePlanetName
+};
+
+render(<PlanetName {...requiredProps} />);
+
+//fire event so validation is triggered and error message is shown
+const planetNameElement = screen.getByLabelText(/Planet Name:/i,{selector: 'input'});
+fireEvent.change(planetNameElement, {target: {value: 'E'}});
+
+expect(
+    screen.getByText("Input must be between 2 and 49 characters.")
+).toBeInTheDocument();
+
+});

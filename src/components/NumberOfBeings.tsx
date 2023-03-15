@@ -1,22 +1,9 @@
 import { useState } from 'react';
 import ErrorMessage from './ErrorMessage';
 
-const NumberOfBeings: React.FC<NumberOfBeingsProps> = ({numberOfBeings, onChangeNumberOfBeings}) => {        
+const NumberOfBeings: React.FC<NumberOfBeingsProps> = ({numberOfBeings, onChangeNumberOfBeings, validate}) => {        
 
     const [ errorMessage, setErrorMessage ] = useState<string | undefined>();
-
-    const validate: (userInput: string) => string | undefined = (userInput) => {
-        const inputNumber = parseInt(userInput);        
-        
-        //check that it is a number
-        if (isNaN(inputNumber)) return "Input must be a number.";
-        
-        //check that it is at least 1,000,000,000       
-        if (inputNumber < 1000000000) return "Number must be at least 1,000,000,000.";
-
-        return undefined;
-    };
-
 
     return (
         <>
@@ -33,7 +20,8 @@ const NumberOfBeings: React.FC<NumberOfBeingsProps> = ({numberOfBeings, onChange
 
 export interface NumberOfBeingsProps { 
 	numberOfBeings: number;
-	onChangeNumberOfBeings: (e: React.ChangeEvent<HTMLInputElement>) => void;		
+	onChangeNumberOfBeings: (e: React.ChangeEvent<HTMLInputElement>) => void;	
+    validate: (userInput: string) => string | undefined;	
 }
 
 export default NumberOfBeings;

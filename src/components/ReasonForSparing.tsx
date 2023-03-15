@@ -1,17 +1,9 @@
 import { useState } from 'react';
 import ErrorMessage from './ErrorMessage';
 
-const ReasonForSparing: React.FC<ReasonForSparingProps> = ({reasonForSparing, onChangeReasonForSparing}) => {            
+const ReasonForSparing: React.FC<ReasonForSparingProps> = ({reasonForSparing, onChangeReasonForSparing, validate}) => {            
 
-    const [ errorMessage, setErrorMessage ] = useState<string | undefined>();
-
-    const validate: (userInput: string) => string | undefined = (userInput) => {
-        //check length
-        if (userInput.length < 17 || userInput.length > 153) return "Input must be between 17 and 153 characters.";
-        
-        return undefined;
-    };
-
+    const [ errorMessage, setErrorMessage ] = useState<string | undefined>();  
 
     return (
         <>
@@ -29,6 +21,7 @@ const ReasonForSparing: React.FC<ReasonForSparingProps> = ({reasonForSparing, on
 export interface ReasonForSparingProps { 
 	reasonForSparing: string;
 	onChangeReasonForSparing: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;		
+    validate: (userInput: string) => string | undefined
 }
 
 export default ReasonForSparing;

@@ -1,21 +1,9 @@
 import { useState } from 'react';
 import ErrorMessage from './ErrorMessage';
 
-const SpeciesName: React.FC<SpeciesNameProps> = ({ speciesName, onChangeSpeciesName }) => {       
+const SpeciesName: React.FC<SpeciesNameProps> = ({ speciesName, onChangeSpeciesName, validate }) => {       
 
-    const [ errorMessage, setErrorMessage ] = useState<string | undefined>();
-
-    const validate: (userInput: string) => string | undefined = (userInput) => {
-        //check length
-        if (userInput.length < 3 || userInput.length > 23) return "Input must be between 3 and 23 characters."
-        
-
-        //check that only letters are used        
-        const regex = (/^\p{L}+$/u);
-        if (!regex.test(userInput)) return "No numbers or special characters are allowed."
-        
-        return undefined;
-    };
+    const [ errorMessage, setErrorMessage ] = useState<string | undefined>();    
 
     return (
         <>
@@ -32,7 +20,8 @@ const SpeciesName: React.FC<SpeciesNameProps> = ({ speciesName, onChangeSpeciesN
 
 export interface SpeciesNameProps { 
 	speciesName: string;
-	onChangeSpeciesName: (e: React.ChangeEvent<HTMLInputElement>) => void;		
+	onChangeSpeciesName: (e: React.ChangeEvent<HTMLInputElement>) => void;	
+    validate: (userInput: string) => string | undefined
 }
 
 export default SpeciesName;

@@ -1,16 +1,9 @@
 import { useState } from 'react';
 import ErrorMessage from './ErrorMessage';
 
-const WhatIs2And2: React.FC<WhatIs2And2Props> = ({whatIs2And2, onChangeWhatIs2And2}) => {        
+const WhatIs2And2: React.FC<WhatIs2And2Props> = ({whatIs2And2, onChangeWhatIs2And2, validate}) => {        
 
     const [ errorMessage, setErrorMessage ] = useState<string | undefined>();
-
-    const validate: (userInput: string) => string | undefined = (userInput) => {
-        //check length
-        if (userInput !== '4') return "Input must be '4'."
-        
-        return undefined;
-    };
 
     return (
         <>
@@ -31,6 +24,7 @@ const WhatIs2And2: React.FC<WhatIs2And2Props> = ({whatIs2And2, onChangeWhatIs2An
 export interface WhatIs2And2Props { 
 	whatIs2And2: string;
 	onChangeWhatIs2And2: (e: React.ChangeEvent<HTMLSelectElement>) => void;		
+    validate: (userInput: string) => string | undefined;
 }
 
 export default WhatIs2And2;

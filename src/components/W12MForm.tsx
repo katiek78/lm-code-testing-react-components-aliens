@@ -7,6 +7,7 @@ import ReasonForSparing from './ReasonForSparing';
 
 import W12MHeader from './W12MHeader';
 import SubmitButton from './SubmitButton';
+import { validateSpeciesName, validatePlanetName, validateNumberOfBeings, validateReasonForSparing, validateWhatIs2And2 } from '../validation/validation_W12MForm';
 
 const W12MForm = () => {
 	const [speciesName, setSpeciesName] = useState<string>('');	   
@@ -22,15 +23,15 @@ const W12MForm = () => {
 	return (
 		<section className='w12MForm'>
 			<W12MHeader />
-			<SpeciesName speciesName={speciesName} onChangeSpeciesName={(e: any) => setSpeciesName(e.target.value)} />
+			<SpeciesName speciesName={speciesName} onChangeSpeciesName={(e: any) => setSpeciesName(e.target.value)} validate={validateSpeciesName} />
 			<br />
-			<PlanetName planetName={planetName} onChangePlanetName={(e: any) => setPlanetName(e.target.value)} />
+			<PlanetName planetName={planetName} onChangePlanetName={(e: any) => setPlanetName(e.target.value)} validate={validatePlanetName} />
 			<br />
-			<NumberOfBeings numberOfBeings={numberOfBeings} onChangeNumberOfBeings={(e: any) => setNumberOfBeings(parseInt(e.target.value))} />
+			<NumberOfBeings numberOfBeings={numberOfBeings} onChangeNumberOfBeings={(e: any) => setNumberOfBeings(parseInt(e.target.value))} validate={validateNumberOfBeings} />
 			<br />
-			<WhatIs2And2 whatIs2And2={whatIs2And2} onChangeWhatIs2And2={(e: any) => setWhatIs2And2(e.target.value)} />
+			<WhatIs2And2 whatIs2And2={whatIs2And2} onChangeWhatIs2And2={(e: any) => setWhatIs2And2(e.target.value)} validate={validateWhatIs2And2} />
 			<br />
-			<ReasonForSparing reasonForSparing={reasonForSparing} onChangeReasonForSparing={(e: any) => setReasonForSparing(e.target.value)} />									
+			<ReasonForSparing reasonForSparing={reasonForSparing} onChangeReasonForSparing={(e: any) => setReasonForSparing(e.target.value)} validate={validateReasonForSparing} />									
 			<br />
 			<SubmitButton onClickSubmitButton={displayFormData} />
 		</section>
