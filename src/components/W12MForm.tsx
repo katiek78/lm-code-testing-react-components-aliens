@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import SpeciesName from './SpeciesName';
 import PlanetName from './PlanetName';
+import NumberOfBeings from './NumberOfBeings';
+import WhatIs2And2 from './WhatIs2And2';
+import ReasonForSparing from './ReasonForSparing';
 
 import W12MHeader from './W12MHeader';
 
@@ -11,9 +14,12 @@ const W12MForm = () => {
 			<SpeciesName />
 			<br />
 			<PlanetName />
-			{/* <NumberOfBeings />
+			<br />
+			<NumberOfBeings />
+			<br />
 			<WhatIs2And2 />
-			<ReasonForSparing /> */}
+			<br />
+			<ReasonForSparing />						
 		</section>
 	);
 };
