@@ -66,3 +66,22 @@ it(`Displays no error message when valid data is entered`, () => {
     ).toBeInTheDocument();
     
     });
+
+    it(`Displays the appropriate error message when input is not a number`, () => {
+        const requiredProps : NumberOfBeingsProps =  {
+                numberOfBeings: 1000000000,
+                onChangeNumberOfBeings: jest.fn(),
+                validate: validateNumberOfBeings
+            };
+        
+        render(<NumberOfBeings {...requiredProps} />);
+        
+        //fire event so validation is triggered and error message is shown
+        const numberOfBeingsElement = screen.getByLabelText(/Number of Beings:/i,{selector: 'input'});
+        fireEvent.change(numberOfBeingsElement, {target: {value: 'apple'}});
+    
+        expect(
+            screen.getByText("ERROR: Input must be a number.")
+        ).toBeInTheDocument();
+        
+        });
