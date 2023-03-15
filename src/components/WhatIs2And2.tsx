@@ -28,7 +28,7 @@ const WhatIs2And2: React.FC<WhatIs2And2Props> = ({whatIs2And2, onChangeWhatIs2An
 	);
 };
 
-interface WhatIs2And2Props { 
+export interface WhatIs2And2Props { 
 	whatIs2And2: string;
 	onChangeWhatIs2And2: (e: React.ChangeEvent<HTMLSelectElement>) => void;		
 }

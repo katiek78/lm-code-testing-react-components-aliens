@@ -26,7 +26,7 @@ const ReasonForSparing: React.FC<ReasonForSparingProps> = ({reasonForSparing, on
 	);
 };
 
-interface ReasonForSparingProps { 
+export interface ReasonForSparingProps { 
 	reasonForSparing: string;
 	onChangeReasonForSparing: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;		
 }

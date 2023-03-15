@@ -30,7 +30,7 @@ const SpeciesName: React.FC<SpeciesNameProps> = ({ speciesName, onChangeSpeciesN
 	);
 };
 
-interface SpeciesNameProps { 
+export interface SpeciesNameProps { 
 	speciesName: string;
 	onChangeSpeciesName: (e: React.ChangeEvent<HTMLInputElement>) => void;		
 }

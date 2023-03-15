@@ -31,7 +31,7 @@ const NumberOfBeings: React.FC<NumberOfBeingsProps> = ({numberOfBeings, onChange
 	);
 };
 
-interface NumberOfBeingsProps { 
+export interface NumberOfBeingsProps { 
 	numberOfBeings: number;
 	onChangeNumberOfBeings: (e: React.ChangeEvent<HTMLInputElement>) => void;		
 }
