@@ -5,8 +5,8 @@ import { validateNumberOfBeings } from '../validation/validation_W12MForm';
 test('renders input element', () => {
 	render(<NumberOfBeings numberOfBeings={0} onChangeNumberOfBeings={jest.fn()} validate={jest.fn()} />);
 
-    const numberOfBeingsLabel = screen.getByLabelText(/Number of Beings:/i,{selector: 'input'});
-    expect(numberOfBeingsLabel).toBeInTheDocument();   
+    const numberOfBeingsElement = screen.getByLabelText(/Number of Beings:/i,{selector: 'input'});
+    expect(numberOfBeingsElement).toBeInTheDocument();   
 });
 
 test('input element has value from props', () => {
