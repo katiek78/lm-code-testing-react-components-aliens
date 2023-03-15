@@ -40,7 +40,7 @@ it(`Displays no error message when valid data is entered`, () => {
 
     //fire event so validation is triggered and we can verify that error message is not shown
     const planetNameElement = screen.getByLabelText(/Planet Name:/i,{selector: 'input'});
-    fireEvent.change(planetNameElement, {target: {value: 'Earth'}});
+    fireEvent.change(planetNameElement, {target: {value: 'Earth2'}});
 
     expect(
         screen.queryByRole("ErrorMessage")
@@ -65,3 +65,41 @@ expect(
 ).toBeInTheDocument();
 
 });
+
+it(`Displays the appropriate error message when input length is greater than 49`, () => {
+    const requiredProps : PlanetNameProps =  {
+        planetName: 'Earth',
+        onChangePlanetName: jest.fn(),
+        validate: validatePlanetName
+    };
+    
+    render(<PlanetName {...requiredProps} />);
+    
+    //fire event so validation is triggered and error message is shown
+    const planetNameElement = screen.getByLabelText(/Planet Name:/i,{selector: 'input'});
+    fireEvent.change(planetNameElement, {target: {value: 'Earrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrth'}});
+    
+    expect(
+        screen.getByText("ERROR: Input must be between 2 and 49 characters.")
+    ).toBeInTheDocument();
+    
+    });
+
+    it(`Displays the appropriate error message when special characters are entered`, () => {
+        const requiredProps : PlanetNameProps =  {
+            planetName: 'Earth',
+            onChangePlanetName: jest.fn(),
+            validate: validatePlanetName
+        };
+        
+        render(<PlanetName {...requiredProps} />);
+        
+        //fire event so validation is triggered and error message is shown
+        const planetNameElement = screen.getByLabelText(/Planet Name:/i,{selector: 'input'});
+        fireEvent.change(planetNameElement, {target: {value: 'Earth!'}});
+        
+        expect(
+            screen.getByText("ERROR: No special characters are allowed.")
+        ).toBeInTheDocument();
+        
+        });
